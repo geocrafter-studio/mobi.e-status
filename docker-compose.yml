@@ -1,14 +1,17 @@
-version: '3'
+version: '2'
 services:
   api:
     build: .
     ports:
     - "8000:8000"
-    deploy:
-      replicas: 1
-      resources:
-        limits:
-          cpus: "0.4"
-          memory: 150M
-      restart_policy:
-        condition: on-failure
+    container_name: mobie-api
+    command: python /mobi.e-status/server.py
+    restart: on-failure
+    #deploy:
+    #  replicas: 1
+    #  resources:
+    #    limits:
+    #      cpus: "0.4"
+    #      memory: 150M
+    #  restart_policy:
+    #    condition: on-failure

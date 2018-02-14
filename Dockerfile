@@ -4,13 +4,14 @@ MAINTAINER Fernando Ribeiro <fernando.ribeiro@geocrafter.eu>
 
 # Install basic applications
 RUN apk add --no-cache --update \
-    git
+    git \
+    bash
 
 
 RUN git clone https://github.com/geocrafter-studio/mobi.e-status.git && cd mobi.e-status && git checkout master && cd -
 
 # Get pip to download and install requirements:
-RUN LIBRARY_PATH=/lib:/usr/lib /bin/sh -c "pip install -r /mobi.e-status/requirements.txt --cache-dir .pip-cache && rm -rf .pip-cache"
+RUN LIBRARY_PATH=/lib:/usr/lib /bin/sh -c "pip install -r /mobi.e-status/app-requirements.txt --cache-dir .pip-cache && rm -rf .pip-cache"
 
 # Set the default directory where CMD will execute
 WORKDIR /mobi.e-status
@@ -19,4 +20,4 @@ WORKDIR /mobi.e-status
 EXPOSE 8000
 
 # Bootstrap script
-RUN python /mobi.e-status/server.py
+#RUN python /mobi.e-status/server.py
