@@ -1,0 +1,14 @@
+version: '3'
+services:
+  api:
+    build: .
+    ports:
+    - "8000:8000"
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.4"
+          memory: 150M
+      restart_policy:
+        condition: on-failure
